@@ -1,0 +1,510 @@
+[gd_scene load_steps=48 format=2]
+
+[ext_resource path="res://playerside/Health.tscn" type="PackedScene" id=1]
+[ext_resource path="res://playerside/Hand.tscn" type="PackedScene" id=2]
+[ext_resource path="res://playerside/Buttons.tscn" type="PackedScene" id=3]
+[ext_resource path="res://playerside/PlayerSide.gd" type="Script" id=4]
+[ext_resource path="res://playerside/Sharp Punch.wav" type="AudioStream" id=5]
+
+[sub_resource type="Animation" id=39]
+resource_name = "AttackCenter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 240, 200 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../..:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../..:attacking")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "AttackLeft"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 100, 250 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../..:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -15.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../..:attacking")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "AttackRight"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 380, 250 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../..:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 15.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../..:attacking")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=40]
+resource_name = "DodgeCenter"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 240, 650 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../..:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../..:dodging")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "DodgeLeft"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 100, 550 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../..:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -15.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../..:dodging")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "DodgeRight"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 380, 550 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../..:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 15.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../..:dodging")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Idle"
+length = 6.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 240, 550 ), Vector2( 100, 550 ), Vector2( 240, 550 ), Vector2( 380, 550 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../..:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5, 3, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -15.0, 0.0, 15.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 240, 550 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../..:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeOneShot" id=17]
+
+[sub_resource type="AnimationNodeTimeSeek" id=38]
+
+[sub_resource type="AnimationNodeAnimation" id=41]
+animation = "AttackCenter"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "AttackLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "AttackRight"
+
+[sub_resource type="AnimationNodeAnimation" id=42]
+animation = "DodgeCenter"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "DodgeLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "DodgeRight"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "RESET"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+
+[sub_resource type="AnimationNodeStateMachine" id=35]
+states/AttackCenter/node = SubResource( 41 )
+states/AttackCenter/position = Vector2( 788, 326 )
+states/AttackLeft/node = SubResource( 18 )
+states/AttackLeft/position = Vector2( 561, 326 )
+states/AttackRight/node = SubResource( 19 )
+states/AttackRight/position = Vector2( 1015, 326 )
+states/DodgeCenter/node = SubResource( 42 )
+states/DodgeCenter/position = Vector2( 788, 805 )
+states/DodgeLeft/node = SubResource( 20 )
+states/DodgeLeft/position = Vector2( 561, 618 )
+states/DodgeRight/node = SubResource( 21 )
+states/DodgeRight/position = Vector2( 1015, 618 )
+states/RESET/node = SubResource( 22 )
+states/RESET/position = Vector2( 788, 510 )
+transitions = [ "DodgeLeft", "AttackLeft", SubResource( 23 ), "DodgeRight", "AttackRight", SubResource( 24 ), "RESET", "AttackLeft", SubResource( 25 ), "RESET", "DodgeLeft", SubResource( 26 ), "RESET", "AttackRight", SubResource( 27 ), "RESET", "DodgeRight", SubResource( 28 ), "DodgeLeft", "DodgeRight", SubResource( 29 ), "DodgeRight", "DodgeLeft", SubResource( 30 ), "DodgeLeft", "RESET", SubResource( 31 ), "DodgeRight", "RESET", SubResource( 32 ), "AttackLeft", "RESET", SubResource( 33 ), "AttackRight", "RESET", SubResource( 34 ), "DodgeLeft", "DodgeCenter", SubResource( 43 ), "DodgeRight", "DodgeCenter", SubResource( 44 ), "DodgeCenter", "DodgeLeft", SubResource( 45 ), "DodgeCenter", "DodgeRight", SubResource( 46 ), "DodgeCenter", "RESET", SubResource( 47 ), "RESET", "DodgeCenter", SubResource( 48 ), "RESET", "AttackCenter", SubResource( 49 ), "AttackCenter", "RESET", SubResource( 50 ), "DodgeCenter", "AttackCenter", SubResource( 51 ) ]
+start_node = "RESET"
+graph_offset = Vector2( -83, -17 )
+
+[sub_resource type="AnimationNodeBlendTree" id=36]
+graph_offset = Vector2( -1060, -260.5 )
+nodes/Animation/node = SubResource( 16 )
+nodes/Animation/position = Vector2( -520, 60 )
+nodes/OneShot/node = SubResource( 17 )
+nodes/OneShot/position = Vector2( -60, 40 )
+nodes/Seek/node = SubResource( 38 )
+nodes/Seek/position = Vector2( -300, 40 )
+nodes/StateMachine/node = SubResource( 35 )
+nodes/StateMachine/position = Vector2( -300, 240 )
+nodes/output/position = Vector2( 220, 40 )
+node_connections = [ "output", 0, "OneShot", "OneShot", 0, "Seek", "OneShot", 1, "StateMachine", "Seek", 0, "Animation" ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
+
+[node name="PlayerSide" type="Node2D"]
+script = ExtResource( 4 )
+attacking = true
+dodging = true
+
+[node name="Hand" parent="." instance=ExtResource( 2 )]
+position = Vector2( 240, 550 )
+scale = Vector2( 2, 2 )
+
+[node name="Sprite" parent="Hand" index="0"]
+modulate = Color( 0, 0, 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Hand"]
+root_node = NodePath("AnimationTree")
+autoplay = "Idle"
+anims/AttackCenter = SubResource( 39 )
+anims/AttackLeft = SubResource( 1 )
+anims/AttackRight = SubResource( 2 )
+anims/DodgeCenter = SubResource( 40 )
+anims/DodgeLeft = SubResource( 11 )
+anims/DodgeRight = SubResource( 15 )
+anims/Idle = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+
+[node name="AnimationTree" type="AnimationTree" parent="Hand/AnimationPlayer"]
+tree_root = SubResource( 36 )
+anim_player = NodePath("..")
+active = true
+parameters/OneShot/active = false
+parameters/Seek/seek_position = -1.0
+parameters/StateMachine/playback = SubResource( 37 )
+
+[node name="Buttons" parent="." instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 677.0
+margin_right = 450.0
+margin_bottom = 677.0
+
+[node name="Health" parent="." instance=ExtResource( 1 )]
+margin_top = 632.0
+margin_bottom = 632.0
+
+[node name="HitSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+margin_left = 200.0
+margin_top = 450.0
+margin_right = 280.0
+margin_bottom = 480.0
+
+[node name="WinLabel" type="Label" parent="PanelContainer"]
+visible = false
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 71.0
+margin_bottom = 21.0
+text = "you win"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="LossLabel" type="Label" parent="PanelContainer"]
+visible = false
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 71.0
+margin_bottom = 21.0
+text = "you lose"
+align = 1
+valign = 1
+uppercase = true
+
+[connection signal="area_entered" from="Hand/Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="dodge_center" from="Buttons" to="." method="_on_Buttons_dodge_center"]
+[connection signal="dodge_left" from="Buttons" to="." method="_on_Buttons_dodge_left"]
+[connection signal="dodge_right" from="Buttons" to="." method="_on_Buttons_dodge_right"]
+[connection signal="hit_center" from="Buttons" to="." method="_on_Buttons_hit_center"]
+[connection signal="hit_left" from="Buttons" to="." method="_on_Buttons_hit_left"]
+[connection signal="hit_right" from="Buttons" to="." method="_on_Buttons_hit_right"]
+
+[editable path="Hand"]
